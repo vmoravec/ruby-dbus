@@ -1,0 +1,17 @@
+Steps with dbus communication:
+DBus.system_bus.service "org.freedesktop.NetworkManager"
+
+0. Create the (singleton) db instance
+	#THREADSAFE
+		* is it needed to create it as a class singleton instance
+		* it could be just a method call of a module to get the reference to the dbus
+		* or it could by a lazily created by calling the service method, there is no need to access the the dbus object (I mean here the ruby object, not a created object of a particular dbus service)
+		* there could be a specialized method to access the object
+1. Call the dbus service
+		* connect to unix socket
+			-> parse the address
+			-> create the unix socket
+2. Get the object
+		* introspect the object to get the methods mapped into it
+3. Introspect the object
+		* get defined the interface methods on the dbus object

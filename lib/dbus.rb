@@ -1,3 +1,4 @@
+$:.unshift File.dirname(__FILE__)
 # dbus.rb - Module containing the low-level D-Bus implementation
 #
 # This file is part of the ruby-dbus project

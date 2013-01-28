@@ -80,7 +80,7 @@ module DBus
       obj.service = nil
       parent_node.delete(node_name)
     end
-	
+
     # Get the object node corresponding to the given _path_. if _create_ is
     # true, the the nodes in the path are created if they do not already exist.
     def get_node(path, create = false)
@@ -502,14 +502,14 @@ module DBus
     # Fill (append) the buffer from data that might be available on the
     # socket.
     def update_buffer
-      @buffer += @socket.read_nonblock(MSG_BUF_SIZE)  
+      @buffer += @socket.read_nonblock(MSG_BUF_SIZE)
     rescue EOFError
       raise                     # the caller expects it
     rescue Exception => e
       puts "Oops:", e
       raise if @is_tcp          # why?
       puts "WARNING: read_nonblock failed, falling back to .recv"
-      @buffer += @socket.recv(MSG_BUF_SIZE)  
+      @buffer += @socket.recv(MSG_BUF_SIZE)
     end
 
     # Get one message from the bus and remove it from the buffer.
@@ -574,9 +574,9 @@ module DBus
       @method_call_replies[m.serial] = retc
 
       retm = wait_for_message
-      
+
       return if retm.nil? #check if somethings wrong
-      
+
       process(retm)
       while @method_call_replies.has_key? m.serial
         retm = wait_for_message
@@ -775,17 +775,17 @@ module DBus
       send_hello
     end
   end
-  
+
   # = D-Bus remote (TCP) bus class
   #
-  # This class may be used when connecting to remote (listening on a TCP socket) 
+  # This class may be used when connecting to remote (listening on a TCP socket)
   # busses. You can also use it to connect to other non-standard path busses.
-  # 
+  #
   # The specified socket_name should look like this:
   # (for TCP)         tcp:host=127.0.0.1,port=2687
   # (for Unix-socket) unix:path=/tmp/my_funky_bus_socket
-  # 
-  # you'll need to take care about authentification then, more info here: 
+  #
+  # you'll need to take care about authentification then, more info here:
   # http://github.com/pangdudu/ruby-dbus/blob/master/README.rdoc
   class RemoteBus < Connection
 

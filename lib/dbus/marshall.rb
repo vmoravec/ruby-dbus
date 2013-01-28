@@ -8,8 +8,6 @@
 # License, version 2.1 as published by the Free Software Foundation.
 # See the file "COPYING" for the exact licensing terms.
 
-require 'socket'
-
 # = D-Bus main module
 #
 # Module containing all the D-Bus modules and classes.
@@ -23,7 +21,7 @@ module DBus
   # Class that handles the conversion (unmarshalling) of payload data
   # to Array.
   class PacketUnmarshaller
-    # Index pointer that points to the byte in the data that is 
+    # Index pointer that points to the byte in the data that is
     # currently being processed.
     #
     # Used to kown what part of the buffer has been consumed by unmarshalling.
@@ -406,7 +404,7 @@ module DBus
         end
       else
         raise NotImplementedError,
-	  "sigtype: #{type.sigtype} (#{type.sigtype.chr})"     
+	  "sigtype: #{type.sigtype} (#{type.sigtype.chr})"
       end
     end # def append
 
@@ -439,6 +437,6 @@ module DBus
           ["x", i]
         end
       end
-    end    
+    end
   end # class PacketMarshaller
 end # module DBus
